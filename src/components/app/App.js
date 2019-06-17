@@ -39,12 +39,21 @@ class App extends React.Component {
         return [[...yesterdayDeletedMap.keys()], editedKeysList, addedKeysList];
     };
 
+    selectKey = (id) => () =>{
+        console.log(id);
+    };
+
     render() {
         const [deletedKeysList,editedKeysList,addedKeysList] = this.setContent(yesterdayMap, todayMap);
         console.log(deletedKeysList, editedKeysList, addedKeysList);
         return (
             <div className="App">
-                <MapList/>
+                <MapList
+                    deletedKeysList = {deletedKeysList}
+                    editedKeysList = {editedKeysList}
+                    addedKeysList = {addedKeysList}
+                    selectKey = {this.selectKey}
+                />
                 <MapEditor/>
             </div>
         );
