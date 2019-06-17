@@ -1,0 +1,31 @@
+.mapList {
+    width: 250px;
+    height: 300px;
+    text-align: left;
+    overflow: hidden;
+    position: absolute;
+    left: 20px;
+    top: 25%;
+    -moz-user-select: none;
+/*    -khtml-user-select: none;*/
+    user-select: none;
+    box-sizing: content-box;
+    background: aqua;
+}
+
+.List {
+    background: #b0ee70;
+    min-height: 300px;
+    overflow: auto;
+    height: auto;
+    max-height: 600px;
+    margin-bottom: 40px;
+}
+.select-box {
+    height: 45px;
+    width: 100%;
+}
+.select-box select{
+    width: 100%;
+    height: 30px;
+}
