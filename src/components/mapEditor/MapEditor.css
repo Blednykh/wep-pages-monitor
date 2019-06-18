@@ -1,46 +1,100 @@
 .editor{
-    border-radius: 10px;
-    border-color: grey;
-    border-style: solid;
-    border-width: 1px;
-    width: 70%;
+    min-width: 73%;
+    width: auto;
     display: flex;
     flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
     text-align: left;
-    position: absolute;
+   /* position: absolute;
     left: 300px;
-    top: 25%;
+    top: 25%;*/
+    min-height:200px;
+    height:auto;
+    background: #E0E0E0;
+    position: relative;
+}
+
+.editor input{
+    background: white;
+    border-radius: 20px;
+    border: none;
+    height: 30px;
+    padding: 5px 10px;
+}
+
+.keyDiv{
+    background: #E0E0E0;
+    height: 30px;
+    padding: 5px 10px;
+    width: 50%;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #202020;
 }
 .content{
  /*   width: 95%;
     margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;*/
+    margin: 0px -20px;
 }
 .value{
-    width: 100%;
-    min-height: 100px;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 160px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+
+    border: none;
 }
 .key{
     width: 50%;
     margin-bottom: 20px;
 }
 .buttonBar{
-    width: 30%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.closeButton{
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    background: none;
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.buttonBar button{
     border: none;
+    height: 30px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.newButton{
+    background: #2ecc71;
+    margin-right: 10px;
+}
+.newButton:hover{
+    background: #27ae60;
+    color: white;
+}
+.deleteButton{
+    background: #e74c3c;
+    margin-right: 10px;
+}
+.deleteButton:hover{
+    background: #c0392b;
+    color: white;
+}
+.timeButton{
+    background: white;
+    margin-left: auto;
+}
+.timeButton:hover{
+    opacity: 0.7;
 }

@@ -196,13 +196,14 @@ class App extends React.Component {
         const {displayedList} = this.state;
         return (
             <div className="App">
+                <div className="appContent">
                 <MapList
                     displayedList = {displayedList}
                     selectKey = {this.selectKey}
                     setDisplayedList = {this.setDisplayedList}
                 />
                 {this.setMapEditorItem()}
-
+                </div>
             </div>
         );
     }

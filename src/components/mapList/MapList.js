@@ -17,9 +17,9 @@ class MapList extends React.Component {
                         <option value="Deleted">Deleted</option>
                     </select>
                 </div>
-                <div className="itemList">
+                <div className="itemsList">
                     {displayedList.map((item,id) =>{
-                        return <div onClick={selectKey(id)}>{item}</div>
+                        return <div className="item" onClick={selectKey(id)}>{item}<hr/></div>
                     })}
                 </div>
             </div>
