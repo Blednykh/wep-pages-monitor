@@ -25,23 +25,23 @@ class App extends React.Component {
         allKeysList: [],
         displayedList: [],
    /*     displayedList: [...todayMap.keys()],*/
-        selectedId: undefined,
+        selectedId: null,
         yesterdayMap: new Map(),
         todayMap: new Map(),
-        yesterdayDate: undefined,
-        todayDate: undefined,
+        yesterdayDate: null,
+        todayDate: null,
         dayPlus: 1
     };
 
     componentDidMount(){
-        console.log('CDM');
+
         const yesterdayMap = JSON.parse(localStorage.getItem("yesterdayMap"))||new Map();
 
         const todayMap = JSON.parse(localStorage.getItem("todayMap")) || new Map();
 
-        const yesterdayDate = JSON.parse(localStorage.getItem("yesterdayDate"))||undefined;
+        const yesterdayDate = JSON.parse(localStorage.getItem("yesterdayDate"));
 
-        const todayDate = JSON.parse(localStorage.getItem("todayDate"))||undefined;
+        const todayDate = JSON.parse(localStorage.getItem("todayDate"));
 
         this.setState({yesterdayMap, todayMap, yesterdayDate, todayDate});
         this.setContent(yesterdayMap, todayMap);
@@ -71,7 +71,8 @@ class App extends React.Component {
             deletedKeysList: [...yesterdayDeletedMap.keys()],
             editedKeysList,
             addedKeysList,
-            allKeysList: [...todayMap.keys()]
+            allKeysList: [...todayMap.keys()],
+            displayedList: [...todayMap.keys()]
         })
        /* return [[...yesterdayDeletedMap.keys()], editedKeysList, addedKeysList];*/
     };
@@ -102,24 +103,29 @@ class App extends React.Component {
                 break;
             }
         }
+        this.setState({selectedId: null});
     };
 
-    deleteButtonClick = key => () => {
+    deleteMapItem = key => () => {
         const {todayMap, yesterdayMap} = this.state;
         todayMap.delete(key);
-        this.setState({selectedId: undefined, todayMap});
+        this.setState({selectedId: null, todayMap});
         this.setContent(yesterdayMap, todayMap);
     };
 
-    editButtonClick = (key, value) => () => {
+    editMapItem = (key, value) => () => {
         const {todayMap, yesterdayMap} = this.state;
         todayMap.set(key,value);
-        this.setState({selectedId: undefined, todayMap});
+        this.setState({selectedId: null, todayMap});
         this.setContent(yesterdayMap, todayMap);
 
     };
 
-    newButtonClick = (key, value) => () => {
+    closeMapItem = () => () => {
+        this.setState({selectedId: null});
+    };
+
+    newMapItem = (key, value)  => () =>{
 
         let {yesterdayMap, todayMap, yesterdayDate, todayDate, dayPlus} = this.state;
 
@@ -129,27 +135,19 @@ class App extends React.Component {
         nowDate.setDate(nowDate.getDate()+dayPlus);
         console.log(nowDate);
 
-if(yesterdayDate!==undefined){
-    console.log(yesterdayDate.getTime(), nowDate.getTime(), yesterdayDate.getTime() >= nowDate.getTime());
-}
-        if(yesterdayDate === undefined || yesterdayDate.getTime() >= nowDate.getTime()){
-            console.log(yesterdayDate);
+        if(yesterdayDate === null || yesterdayDate.getTime() >= nowDate.getTime()){
             yesterdayDate = nowDate;
             yesterdayMap.set(key,value);
         }
         else{
-            if(todayDate === undefined || todayDate.getTime() >= nowDate.getTime()){
-                if(todayDate === undefined){
+            if(todayDate === null || todayDate.getTime() >= nowDate.getTime()){
+                if(todayDate === null){
                     todayMap = new Map(yesterdayMap);
-                }
-                else{
-                    console.log(todayDate.getTime(), nowDate.getTime(), todayDate.getTime() >= nowDate.getTime());
                 }
                 todayDate = nowDate;
                 todayMap.set(key,value);
             }
             else{
-                console.log(todayDate.getTime(),nowDate.getTime(),todayDate.getTime() >= nowDate.getTime());
                 yesterdayDate = todayDate;
                 todayDate = nowDate;
                 yesterdayMap = new Map(todayMap);
@@ -166,14 +164,14 @@ if(yesterdayDate!==undefined){
         let {dayPlus} = this.state;
         dayPlus++;
         this.setState({dayPlus: dayPlus})
-    }
+    };
 
     setMapEditorItem = () =>{
 
         const {displayedList, deletedKeysList, selectedId, todayMap} = this.state;
         let mapKey = "";
         let mapValue = "";
-        if(selectedId !== undefined){
+        if(selectedId !== null){
             mapKey = displayedList[selectedId];
             mapValue = todayMap.get(mapKey);
         }
@@ -181,13 +179,16 @@ if(yesterdayDate!==undefined){
             return <MapEditor
                 mapKey = {mapKey}
                 mapValue = {mapValue}
-                deleteButtonClick = {this.deleteButtonClick}
-                editButtonClick = {this.editButtonClick}
-                newButtonClick = {this.newButtonClick}
+                deleteMapItem = {this.deleteMapItem}
+                editMapItem = {this.editMapItem}
+                closeMapItem = {this.closeMapItem}
+                newMapItem = {this.newMapItem}
                 plusDayButtonClick = {this.plusDayButtonClick}
+                selectedId = {this.state.selectedId}
             />
         }
     };
+
 
     render() {
       /*  const [deletedKeysList,editedKeysList,addedKeysList] = this.setContent(yesterdayMap, todayMap);*/

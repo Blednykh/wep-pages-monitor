@@ -10,7 +10,7 @@
 /*    -khtml-user-select: none;*/
     user-select: none;
     box-sizing: content-box;
-    background: aqua;
+    background: lightgray;
 }
 
 .List {
