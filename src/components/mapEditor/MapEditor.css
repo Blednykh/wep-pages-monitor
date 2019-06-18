@@ -37,3 +37,8 @@
     margin-bottom: 20px;
 }
 
+.closeButton{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
