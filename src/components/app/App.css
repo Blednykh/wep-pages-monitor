@@ -1,0 +1,18 @@
+.App {
+  height: auto;
+  min-height: 800px;
+  text-align: center;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  padding-bottom: 200px;
+}
+
+.appContent {
+  background: #e74c3c;
+  height: auto;
+  justify-content: space-between;
+  min-height: 300px;
+  margin-left: 270px;
+  margin-top: 50px;
+  margin-right: 20px;
+  padding: 20px;
+}
