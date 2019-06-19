@@ -5,7 +5,7 @@ class MapList extends React.Component {
 
     render() {
 
-        const {displayedList,selectKey,setDisplayedList} = this.props;
+        const {displayedList, selectKey, setDisplayedList} = this.props;
 
         return (
             <div className="mapList">
@@ -18,15 +18,17 @@ class MapList extends React.Component {
                     </select>
                 </div>
                 <div className="itemsList">
-                    {displayedList.map((item,id) =>{
-                        return <div className="item" onClick={selectKey(id)}>{item}<hr/></div>
+                    {displayedList.map((item, id) => {
+                        return (
+                            <div className="item" onClick={selectKey(id)}>{item}
+                            </div>
+                        )
                     })}
                 </div>
             </div>
         )
     }
 }
-
 
 export default MapList;
 
